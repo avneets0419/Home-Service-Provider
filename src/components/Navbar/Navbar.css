@@ -1,0 +1,123 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    background-color: white;
+    position: relative;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .brand-name {
+    font-weight: 700;
+    color: #2a4b9c;
+    font-size: 1.75rem;
+    padding-left: 20px;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0 32px;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0 12px;
+    font-weight: 600;
+    color: #2b2d42;
+    cursor: pointer;
+  }
+  
+  .navbar-links li:hover {
+    color: #2a4b9c;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 4px 8px;
+    margin-right: 16px;
+  }
+  
+  .search-box input {
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    color: #444;
+    padding: 4px;
+  }
+  
+  .search-icon {
+    color: #2a4b9c;
+    font-size: 1.1rem;
+    margin-left: 4px;
+  }
+  
+  .phone-number {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: #2a4b9c;
+    margin-right: 16px;
+  }
+  
+  .phone-icon {
+    margin-right: 6px;
+    font-size: 1.1rem;
+  }
+  
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: white;
+      padding: 16px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  
+    .navbar-links.active {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .navbar-right {
+      align-items: center;
+    }
+  
+    .search-box {
+      display: none; /* Hide search on mobile */
+    }
+  
+    .phone-number {
+      display: none; /* Hide phone on mobile */
+    }
+  }
+  

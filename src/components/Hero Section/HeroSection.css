@@ -1,0 +1,118 @@
+
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background: url('./hero-bg.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 80px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  color: #fff;
+  max-width: 50%;
+}
+
+.hero-left h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero-left p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.hero-buttons .btn {
+  padding: 12px 24px;
+  margin-right: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #2a4b9c;
+  color: #fff;
+}
+
+.secondary {
+  background-color: #e0f0ff;
+  color: #2a4b9c;
+}
+
+
+
+.contact-card h2 {
+  color: #2a4b9c;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.contact-card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.hero-right {
+    max-width: 400px;
+    width: 100%;
+    background-color: white;
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+form select {
+  color: #555;
+}
+
+.submit-btn {
+  background-color: #ff8c40;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
