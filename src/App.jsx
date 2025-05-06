@@ -1,14 +1,24 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
-import HeroSection from './components/Hero Section/HeroSection'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import Blog from "./pages/Blog";
+
+
+import Home from "./pages/home";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+
+const App = () => {
   return (
-    <div>
+    <>
       <Navbar/>
-      <HeroSection/>
-    </div>
-  )
-}
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/blog" element={<Blog/>} />
+      </Routes>
+      <Footer/>
+    </>
+  );
+};
 
-export default App
+export default App;
