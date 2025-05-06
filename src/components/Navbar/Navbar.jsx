@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-// import logo from "./logo.svg"; // Replace with actual logo
+
 import { FiSearch, FiPhone, FiMenu, FiX } from "react-icons/fi";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,10 +26,13 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <div className="search-box">
-          <input type="text" placeholder="Search for services..." />
-          <FiSearch className="search-icon" />
-        </div>
+      <SignedOut>
+        <SignInButton className="btn primary"/>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+      <button className="btn primary">Login</button>
         <div className="hamburger" onClick={toggleMenu}>
           {menuOpen ? <FiX /> : <FiMenu />}
         </div>
