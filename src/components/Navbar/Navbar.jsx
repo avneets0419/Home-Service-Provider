@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 
-import { FiSearch, FiPhone, FiMenu, FiX } from "react-icons/fi";
+import {FiMenu, FiX } from "react-icons/fi";
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,11 +19,12 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
-        <li>Home</li>
-        <li>Services</li>
-        <li>About Us</li>
-        <li>Testimonials</li>
-        <li>Contact</li>
+        <li><Link to="/" className="navbarl">Home</Link></li>
+        
+        <li><Link to="/about" className="navbarl">About Us</Link></li>
+        <li><Link to="/blog" className="navbarl">Blogs</Link></li>
+        <li className="navbarl">Services</li>
+        <li className="navbarl">Contact</li>
       </div>
 
       <div className="navbar-right">
