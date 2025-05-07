@@ -1,6 +1,6 @@
 import React from "react";
 import "./TeamCarousel.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
 
 const teamMembers = [
   {
