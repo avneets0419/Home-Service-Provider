@@ -22,10 +22,12 @@
     color: #2a4b9c;
     font-size: 1.75rem;
     padding-left: 20px;
+    text-decoration: none;
+
   }
   
   .navbar-links {
-    width: 70%;
+    width: 65%;
     display: flex;
     justify-content: space-between;
     list-style: none;

@@ -21,7 +21,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <span className="brand-name">ProFix</span>
+        <span className="brand-name">
+          <Link className="brand-name" to="/">
+            ProFix
+          </Link>
+        </span>
       </div>
 
       <div className={`navbar-links ${menuOpen ? "active" : ""}`}>

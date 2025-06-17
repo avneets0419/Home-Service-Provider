@@ -1,6 +1,7 @@
 import React from "react";
 import "./HeroSection.css";
 import { FiSend } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -9,11 +10,17 @@ const HeroSection = () => {
         <div className="hero-left">
           <h1>Professional Home Services You Can Trust</h1>
           <p>
-            Expert plumbing, electrical, HVAC, and home repair services delivered with care and precision.
+            Expert plumbing, electrical, HVAC, and home repair services
+            delivered with care and precision.
           </p>
           <div className="hero-buttons">
-            <button className="btn primary">Our Services</button>
-            <button className="btn secondary">About Us</button>
+            <Link to="/about" className="btn primary">
+              Our Services
+            </Link>
+
+            <Link to="/about" className="btn secondary">
+              About Us
+            </Link>
           </div>
         </div>
 
@@ -32,7 +39,10 @@ const HeroSection = () => {
                 <option>HVAC</option>
                 <option>Repair</option>
               </select>
-              <textarea placeholder="Tell us about your needs" rows="3"></textarea>
+              <textarea
+                placeholder="Tell us about your needs"
+                rows="3"
+              ></textarea>
               <button type="submit" className="submit-btn">
                 <FiSend className="send-icon" /> Send Request
               </button>
