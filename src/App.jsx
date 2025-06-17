@@ -7,7 +7,7 @@ import Blog from "./pages/Blog";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 
