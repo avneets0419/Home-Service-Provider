@@ -1,18 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import HeroSection from '../components/Hero Section/HeroSection'
-import FeatureCarousel from '../components/Feature Carousel/FeatureCarousel'
-import Search from '../components/Search/Search'
-
+import HeroSection from "../components/Hero Section/HeroSection";
+import FeatureCarousel from "../components/Feature Carousel/FeatureCarousel";
 
 function Home() {
   return (
     <div>
-      <Search/>
-      <HeroSection/>
-      <FeatureCarousel/>
+      <HeroSection />
+      <FeatureCarousel />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
