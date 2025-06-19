@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./CheckoutModal.css";
 import { useUser } from "@clerk/clerk-react";
 import AuthRequiredModal from "../Auth Required Modal/AuthRequiredModal";
 
 const CheckoutModal = ({ isOpen, onClose, service }) => {
+  const [loading, setLoading] = useState(false);
   const { user } = useUser();
 
   const name = user?.fullName || "";
@@ -18,6 +19,7 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
   if (!isOpen || !service) return null;
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     const url =
       "https://script.google.com/macros/s/AKfycbzdweBmhPopTrjY_AT5XpZTQuH1TqTyiv9GW2jgcX7l8rZq3xOFJU8hJK2Cwm0ICqyB/exec";
@@ -30,6 +32,7 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
       .then((data) => {
         alert("Order Created Succesfully");
         onClose();
+        setLoading(false);
       })
       .catch((error) => console.log(error));
   };
@@ -87,7 +90,7 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
             />
           </label>
           <button type="submit" className="checkout-btn">
-            Proceed to Checkout
+            {loading ? <div className="spinner"></div> : "Book Service"}
           </button>
         </form>
       </div>
