@@ -14,7 +14,7 @@ const HeroSection = () => {
             delivered with care and precision.
           </p>
           <div className="hero-buttons">
-            <Link to="/about" className="btn primary">
+            <Link to="/services" className="btn primary">
               Our Services
             </Link>
 

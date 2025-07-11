@@ -64,7 +64,7 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
         <form className="modal-form" onSubmit={handleSubmit}>
           <label>
             Full Name
-            <input name="name" type="text" value={name} />
+            <input name="name" type="text" value={name} disabled />
           </label>
           <label>
             Email
