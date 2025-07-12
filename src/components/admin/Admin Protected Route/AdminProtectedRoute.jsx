@@ -7,6 +7,7 @@ import {
   RedirectToSignIn,
 } from "@clerk/clerk-react";
 import "./AdminProtectedRoute.css";
+import { Link } from "react-router-dom";
 
 const AdminProtectedRoute = ({ children }) => {
   const { user, isLoaded } = useUser();
@@ -16,7 +17,16 @@ const AdminProtectedRoute = ({ children }) => {
   const role = user?.publicMetadata?.role;
 
   if (role !== "admin") {
-    return <div>🚫 Access Denied. Admins only.</div>;
+    return (
+      <div className="deniedpg">
+        <div className="denied">
+          <h3>🚫 Access Denied. Admins only.</h3>
+          <Link to="/" className="btn">
+            Return to Home
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (

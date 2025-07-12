@@ -7,15 +7,6 @@ const DashboardStats = () => {
     <div className="dashboard-wrapper">
       <h1>Welcome to Dashboard</h1>
       <div className="top-cards">
-        <div className="card customers-card">
-          <div className="icon">&#128101;</div>
-          <div className="label">Customers</div>
-          <div className="container">
-            <div className="value">3,782</div>
-            <div className="stat up">▲ 11.01%</div>
-          </div>
-        </div>
-
         <Link to="/admin/orders" className="link">
           <div className="icon">&#128230;</div>
           <div className="label">Orders</div>

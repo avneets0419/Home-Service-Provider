@@ -1,15 +1,13 @@
 import React from "react";
 import AdminSidebar from "../../components/admin/Sidebar/AdminSidebar";
+import SupportTable from "../../components/admin/Support Table/SupportTable";
 
 const CustomerSupport = () => {
   return (
-    <div style={{}}>
+    <body style={{ background: "#F9FAFB" }}>
       <AdminSidebar />
-      <div style={{ marginLeft: "280px", padding: "20px" }}>
-        <h1>Customer Support</h1>
-        <p>This is the customer support page.</p>
-      </div>
-    </div>
+      <SupportTable />
+    </body>
   );
 };
 

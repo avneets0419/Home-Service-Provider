@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import "./AdminSidebar.css";
-import { useUser, SignOutButton } from "@clerk/clerk-react";
+import { useUser, SignOutButton, UserButton } from "@clerk/clerk-react";
 
 const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +36,7 @@ const AdminSidebar = () => {
             <SidebarLink label="Customer Support" to="/admin/support" />
           </div>
         </div>
+
         <div className="sidebar-user">
           <img
             src={user?.imageUrl}

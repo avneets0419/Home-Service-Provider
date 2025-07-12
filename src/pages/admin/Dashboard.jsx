@@ -5,12 +5,12 @@ import OrdersTable from "../../components/admin/Order Table/OrdersTable";
 
 const Dashboard = () => {
   return (
-    <div style={{}}>
+    <body style={{ background: "#F9FAFB" }}>
       <AdminSidebar />
       <DashboardStats />
       <></>
       <OrdersTable />
-    </div>
+    </body>
   );
 };
 
