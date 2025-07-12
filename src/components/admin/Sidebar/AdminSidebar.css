@@ -134,16 +134,18 @@
   @media (max-width: 768px) {
     .sidebar {
       position: fixed;
-      width: 100%;
+      width: fit-content;
       height: auto;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
       padding: 10px;
+      width: 240px;
 
     }
   
     .sidebar-user {
+
       width: 100%;
       justify-content: space-between;
       margin-top: 10px;
@@ -166,6 +168,7 @@
   
     .sidebar.open {
       transform: translateX(0);
+      width: 240px;
     }
   
     .mobile-toggle {
