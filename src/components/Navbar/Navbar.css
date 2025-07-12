@@ -15,7 +15,9 @@
     display: flex;
     align-items: center;
   }
-  
+  .admin{
+    padding-left: 4px;
+  }
   
   .brand-name {
     font-weight: 700;

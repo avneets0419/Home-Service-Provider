@@ -8,11 +8,14 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
+  useUser,
 } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useUser();
+  const role = user?.publicMetadata?.role || "";
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -59,12 +62,14 @@ const Navbar = () => {
             <input type="text" placeholder="Search for services..." />
             <FiSearch className="search-icon" />
           </div>
+
           <SignedOut>
             <SignInButton className="btn primary" />
           </SignedOut>
           <SignedIn>
             <UserButton />
           </SignedIn>
+          {role === "admin" && <div style={{ paddingLeft: "10px" }}>Admin</div>}
         </div>
       </div>
 
