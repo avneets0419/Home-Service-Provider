@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import "./CheckoutModal.css";
 import { useUser } from "@clerk/clerk-react";
 import AuthRequiredModal from "../Auth Required Modal/AuthRequiredModal";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const CheckoutModal = ({ isOpen, onClose, service }) => {
   const [loading, setLoading] = useState(false);
@@ -18,9 +20,39 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
 
   if (!isOpen || !service) return null;
 
-  const handleSubmit = (e) => {
+  const generateOrderId = async () => {
+    const snapshot = await getDocs(collection(db, "orders"));
+    const count = snapshot.size + 1;
+    return `PR-${String(count).padStart(3, "0")}`;
+  };
+
+  const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+
+    // 1. Store to Firestore
+    try {
+      const orderId = await generateOrderId();
+
+      const formData = {
+        id: orderId,
+        name,
+        email,
+        phone: phoneRef.current.value,
+        address: addressRef.current.value,
+        service: service.title,
+        price: service.price,
+        timestamp: new Date().toISOString(),
+      };
+
+      // Add to Firestore
+      await addDoc(collection(db, "orders"), formData);
+      console.log("✅ Order saved to Firestore");
+    } catch (error) {
+      console.error("❌ Error creating order:", error);
+      alert("Something went wrong!");
+    }
+
     const url =
       "https://script.google.com/macros/s/AKfycbzdweBmhPopTrjY_AT5XpZTQuH1TqTyiv9GW2jgcX7l8rZq3xOFJU8hJK2Cwm0ICqyB/exec";
     fetch(url, {

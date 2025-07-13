@@ -1,59 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./OrdersTable.css";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
 
-  // Dummy fetch logic – Replace with real API later
   useEffect(() => {
-    // Simulate API fetch
-    const dummyData = [
-      {
-        id: "ORD1234",
-        name: "John Doe",
-        service: "Emergency Plumbing",
-        amount: "$89",
-        address: "123 Main St, New York",
-      },
-      {
-        id: "ORD1235",
-        name: "Jane Smith",
-        service: "Electrical Installation",
-        amount: "$125",
-        address: "456 Broadway, LA",
-      },
-      {
-        id: "ORD1234",
-        name: "John Doe",
-        service: "Emergency Plumbing",
-        amount: "$89",
-        address: "123 Main St, New York",
-      },
-      {
-        id: "ORD1235",
-        name: "Jane Smith",
-        service: "Electrical Installation",
-        amount: "$125",
-        address: "456 Broadway, LA",
-      },
-      {
-        id: "ORD1234",
-        name: "John Doe",
-        service: "Emergency Plumbing",
-        amount: "$89",
-        address: "123 Main St, New York",
-      },
-      {
-        id: "ORD1235",
-        name: "Jane Smith",
-        service: "Electrical Installation",
-        amount: "$125",
-        address: "456 Broadway, LA",
-      },
-    ];
-    setTimeout(() => {
-      setOrders(dummyData);
-    }, 1000);
+    const unsubscribe = onSnapshot(collection(db, "orders"), (snapshot) => {
+      const fetchedOrders = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setOrders(fetchedOrders);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -82,7 +44,7 @@ const OrdersTable = () => {
                 <td>{order.id}</td>
                 <td>{order.name}</td>
                 <td>{order.service}</td>
-                <td>{order.amount}</td>
+                <td>{order.price || "—"}</td>
                 <td>{order.address}</td>
               </tr>
             ))
