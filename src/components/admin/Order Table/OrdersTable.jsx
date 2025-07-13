@@ -1,22 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./OrdersTable.css";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { useUser } from "@clerk/clerk-react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
+  const previousOrdersRef = useRef([]);
+  const { user } = useUser();
+  const role = user?.publicMetadata?.role;
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "orders"), (snapshot) => {
-      const fetchedOrders = snapshot.docs.map((doc) => ({
-        id: doc.id,
+    const ordersRef = collection(db, "orders");
+    const q = query(ordersRef, orderBy("timestamp", "desc"));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const newOrders = snapshot.docs.map((doc) => ({
+        id: doc.data().orderId || doc.id,
         ...doc.data(),
       }));
-      setOrders(fetchedOrders);
+
+      // Skip first load
+      if (previousOrdersRef.current.length && role === "admin") {
+        const prevIds = new Set(previousOrdersRef.current.map((o) => o.id));
+        const newlyAdded = newOrders.find((o) => !prevIds.has(o.id));
+        if (newlyAdded) {
+          toast.success(`🛎️ New order from ${newlyAdded.name}`, {
+            position: "top-right",
+            autoClose: 6000,
+          });
+        }
+      }
+
+      // Update both ref and state
+      previousOrdersRef.current = newOrders;
+      setOrders(newOrders);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [role]);
 
   return (
     <div className="orders-table-wrapper">

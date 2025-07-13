@@ -4,11 +4,11 @@ import OrdersTable from "../../components/admin/Order Table/OrdersTable";
 
 const Orders = () => {
   return (
-    <body style={{ background: "#F9FAFB" }}>
+    <div style={{ background: "#F9FAFB", minHeight: "100vh" }}>
       <AdminSidebar />
 
       <OrdersTable />
-    </body>
+    </div>
   );
 };
 

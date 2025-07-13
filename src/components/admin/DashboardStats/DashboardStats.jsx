@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./DashboardStats.css";
 import { Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 const DashboardStats = () => {
@@ -10,24 +10,34 @@ const DashboardStats = () => {
   const [supportCount, setSupportCount] = useState(0);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      // Fetch Orders
-      const ordersSnapshot = await getDocs(collection(db, "orders"));
-      const orders = ordersSnapshot.docs.map((doc) => doc.data());
-      setOrdersCount(orders.length);
+    // Real-time listener for Orders
+    const unsubscribeOrders = onSnapshot(
+      collection(db, "orders"),
+      (snapshot) => {
+        const orders = snapshot.docs.map((doc) => doc.data());
+        setOrdersCount(orders.length);
 
-      const totalSales = orders.reduce((sum, order) => {
-        const price = parseFloat(order.price.replace(/[^\d.-]/g, ""));
-        return sum + (isNaN(price) ? 0 : price);
-      }, 0);
-      setSalesTotal(totalSales);
+        const totalSales = orders.reduce((sum, order) => {
+          const price = parseFloat(order.price.replace(/[^\d.-]/g, ""));
+          return sum + (isNaN(price) ? 0 : price);
+        }, 0);
+        setSalesTotal(totalSales);
+      }
+    );
 
-      // Fetch Support Queries
-      const supportSnapshot = await getDocs(collection(db, "support"));
-      setSupportCount(supportSnapshot.size);
+    // Real-time listener for Support Queries
+    const unsubscribeSupport = onSnapshot(
+      collection(db, "support"),
+      (snapshot) => {
+        setSupportCount(snapshot.size);
+      }
+    );
+
+    // Cleanup on unmount
+    return () => {
+      unsubscribeOrders();
+      unsubscribeSupport();
     };
-
-    fetchStats();
   }, []);
 
   return (

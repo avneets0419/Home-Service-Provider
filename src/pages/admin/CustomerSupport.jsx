@@ -4,10 +4,10 @@ import SupportTable from "../../components/admin/Support Table/SupportTable";
 
 const CustomerSupport = () => {
   return (
-    <body style={{ background: "#F9FAFB" }}>
+    <div style={{ background: "#F9FAFB", minHeight: "100vh" }}>
       <AdminSidebar />
       <SupportTable />
-    </body>
+    </div>
   );
 };
 
