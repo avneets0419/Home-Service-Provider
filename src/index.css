@@ -4,3 +4,17 @@
   background-color: "white";
   font-family: 'Poppins', sans-serif;
 }
+/* Remove default margin/padding from html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+}
+
+/* Optional: Make your root div fill full height */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

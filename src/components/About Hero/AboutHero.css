@@ -63,4 +63,21 @@
     margin-bottom: 20px;
   }
   
+  @media (max-width: 768px) {
+    .our-history .container {
+      margin: 0 20px;
+      display: flex;
+      flex-direction: column;
+  }
+  .about-hero-content h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
   
+  .about-hero-content p {
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
+  }

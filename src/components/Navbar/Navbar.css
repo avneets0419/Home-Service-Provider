@@ -113,7 +113,7 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
-  
+
   /* Responsive styles */
   @media screen and (max-width: 1021px) {
     .navbar-links {
@@ -124,9 +124,10 @@
       right: 0;
       flex-direction: column;
       background-color: white;
-      padding: 16px 0;
+      padding-top: 16px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       z-index: 1000;
+      border-radius: 0px 0px 16px 16px;
     }
     .navl{
       display: flex;
@@ -154,11 +155,30 @@
     }
   
     .search-box {
-      display: none; /* Hide search on mobile */
+      display: none; 
     }
   
-    .phone-number {
-      display: none; /* Hide phone on mobile */
+
+    .brand-name{
+      padding-left: 0;
+    }
+    .navl{
+      align-items: start;
+      gap: 3px;
+    }
+    .navbarl{
+      margin: 0;
+    }
+    
+    li{
+      width: 100vw;
+      border-bottom: 0.1px solid #d7e2ff;
+      padding: 10px;
+    }
+    .navbarr{
+      width: 100%;
+      justify-content: start;
+      padding: 10px;
     }
   }
   

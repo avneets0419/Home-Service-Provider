@@ -129,3 +129,30 @@ form select {
   margin-right: 8px;
   font-size: 1.1rem;
 }
+@media (max-width: 1001px) {
+  .hero{
+    margin:0;
+    border-radius: 0;
+  }
+  .hero-overlay{
+    display: flex;
+    border-radius: 0;
+    padding: 30px 20px;
+    justify-content: center;
+  }
+  .hero-left {
+    max-width: 100%;
+    
+  }
+  .hero-left h1{
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 0;
+  }
+  .hero-left p{
+    text-align: center;
+  }
+  .hero-buttons{
+    display: none;
+  }
+}
