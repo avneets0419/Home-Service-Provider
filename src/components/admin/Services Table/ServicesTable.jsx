@@ -135,6 +135,11 @@ const ServicesTable = () => {
           ))}
         </tbody>
       </table>
+      <div className="table-footer">
+        <button className="add-btn" onClick={handleAddService}>
+          + Add Service
+        </button>
+      </div>
     </div>
   );
 };

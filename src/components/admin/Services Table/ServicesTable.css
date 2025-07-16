@@ -74,12 +74,16 @@
     color: #a71d2a;
     cursor: pointer;
   }
+  .table-footer{
+    display: none;
+  }
   
   
   @media (max-width: 768px) {
     .services-table-container {
       margin-left: 0;
       padding: 10px;
+      width: 100%;
     }
   
     .services-table th,
@@ -90,6 +94,11 @@
   
     .table-header h2 {
       font-size: 18px;
+    }
+    .table-footer{
+      display: flex;
+      justify-content: end;
+      padding: 10px;
     }
   }
   

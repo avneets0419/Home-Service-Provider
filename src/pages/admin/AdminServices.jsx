@@ -4,7 +4,13 @@ import ServicesTable from "../../components/admin/Services Table/ServicesTable";
 
 const AdminServices = () => {
   return (
-    <div style={{ background: "#F9FAFB", minHeight: "100vh" }}>
+    <div
+      style={{
+        background: "#F9FAFB",
+        minHeight: "100vh",
+        width: "fit-content",
+      }}
+    >
       <AdminSidebar />
       <ServicesTable />
     </div>

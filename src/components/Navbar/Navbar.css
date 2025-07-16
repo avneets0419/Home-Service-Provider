@@ -113,6 +113,11 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
+  .adminl{
+    color: #2b2d42;
+    cursor: pointer;
+    text-decoration: none;
+  }
 
   /* Responsive styles */
   @media screen and (max-width: 1021px) {

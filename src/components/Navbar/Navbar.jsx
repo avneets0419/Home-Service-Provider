@@ -72,7 +72,13 @@ const Navbar = () => {
           <SignedIn>
             <UserButton />
           </SignedIn>
-          {role === "admin" && <div style={{ paddingLeft: "10px" }}>Admin</div>}
+          {role === "admin" && (
+            <div style={{ paddingLeft: "10px" }}>
+              <Link to="/admin" className="adminl">
+                Admin
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
