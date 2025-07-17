@@ -175,7 +175,7 @@
       margin: 0;
     }
     
-    li{
+    .list{
       width: 100vw;
       border-bottom: 0.1px solid #d7e2ff;
       padding: 10px;

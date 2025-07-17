@@ -7,7 +7,8 @@ import AuthRequiredModal from "../Auth Required Modal/AuthRequiredModal";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const CheckoutModal = ({ isOpen, onClose, service }) => {
+const CheckoutModal = ({ isOpen, onClose, service, showConfirmation }) => {
+  const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
 
@@ -48,6 +49,9 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
       // Add to Firestore
       await addDoc(collection(db, "orders"), formData);
       console.log("✅ Order saved to Firestore");
+      setLoading(false);
+      onClose(); // ✅ close booking modal first
+      showConfirmation();
     } catch (error) {
       console.error("❌ Error creating order:", error);
       alert("Something went wrong!");
@@ -62,8 +66,6 @@ const CheckoutModal = ({ isOpen, onClose, service }) => {
     })
       .then((res) => res.text())
       .then((data) => {
-        alert("Order Created Succesfully");
-        onClose();
         setLoading(false);
       })
       .catch((error) => console.log(error));

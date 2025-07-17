@@ -100,5 +100,16 @@
       justify-content: end;
       padding: 10px;
     }
+    .add-btn2{
+      padding: 8px 12px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    }
+    .add-btn {
+      display: none;
+    }
   }
   

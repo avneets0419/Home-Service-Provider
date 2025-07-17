@@ -11,6 +11,8 @@ import { db } from "../../../firebase"; // Adjust path if needed
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaPen, FaTrash } from "react-icons/fa";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Popconfirm } from "antd";
 
 const ServicesTable = () => {
   const [services, setServices] = useState([]);
@@ -55,11 +57,6 @@ const ServicesTable = () => {
 
   // 🗑 Delete a service
   const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this service?"
-    );
-    if (!confirmed) return;
-
     try {
       await deleteDoc(doc(db, "services", id));
       toast.error("Service deleted successfully!", {
@@ -123,12 +120,25 @@ const ServicesTable = () => {
                   >
                     <FaPen />
                   </button>
-                  <button
+                  <Popconfirm
+                    title="Delete the task"
+                    description="Are you sure to delete this task?"
+                    icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                    onConfirm={() => handleDelete(service.id)}
+                    okText="Delete"
+                    okButtonProps={{ danger: true }}
+                  >
+                    <button className="ivon-btn delete-icon">
+                      <FaTrash />
+                    </button>
+                    {/* <Button danger>Delete</Button> */}
+                  </Popconfirm>
+                  {/* <button
                     className="ivon-btn delete-icon"
                     onClick={() => handleDelete(service.id)}
                   >
                     <FaTrash />
-                  </button>
+                  </button> */}
                 </div>
               </td>
             </tr>
@@ -136,7 +146,7 @@ const ServicesTable = () => {
         </tbody>
       </table>
       <div className="table-footer">
-        <button className="add-btn" onClick={handleAddService}>
+        <button className="add-btn2" onClick={handleAddService}>
           + Add Service
         </button>
       </div>

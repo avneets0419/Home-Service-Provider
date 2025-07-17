@@ -33,28 +33,28 @@ const Navbar = () => {
 
       <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <div className="navl">
-          <li>
+          <li className="list">
             <Link to="/" className="navbarl">
               Home
             </Link>
           </li>
 
-          <li>
+          <li className="list">
             <Link to="/about" className="navbarl">
               About Us
             </Link>
           </li>
-          <li>
+          <li className="list">
             <Link to="/blog" className="navbarl">
               Blogs
             </Link>
           </li>
-          <li>
+          <li className="list">
             <Link to="/services" className="navbarl">
               Services
             </Link>
           </li>
-          <li>
+          <li className="list">
             <Link to="/services" className="navbarl">
               Contact Us
             </Link>

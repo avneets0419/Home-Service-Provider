@@ -168,13 +168,7 @@
   
   
   /* Responsive */
-  @media (max-width: 768px) {
-    .sidebar {
-      transform: translateX(-100%);
-      height: 100%;
-      justify-content: space-between;
-    }
-  
+  @media (max-width: 768px) {  
     .sidebar.open {
         display: flex;
         flex-direction: column;
@@ -184,6 +178,13 @@
 
       justify-content: space-between;
     }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-100%);
+    width: 240px;
+    justify-content: space-between;
+  }
   
     .mobile-toggle {
       display: block;

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./SupportTable.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { Pagination } from "antd";
 
 const SupportTable = () => {
   const [tickets, setTickets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(5); // Shows 5 orders per page
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "support"), (snapshot) => {
@@ -22,6 +25,12 @@ const SupportTable = () => {
 
     return () => unsubscribe();
   }, []);
+  // Below all useEffect logic
+  const paginatedTickets = tickets.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
     <div className="support-wrapper">
       <h1>Customer Support Tickets</h1>
@@ -44,7 +53,7 @@ const SupportTable = () => {
                 <td colSpan="7">Loading tickets...</td>
               </tr>
             ) : (
-              tickets.map((ticket, index) => (
+              paginatedTickets.map((ticket, index) => (
                 <tr key={ticket.id}>
                   <td>
                     {ticket.supportId ||
@@ -79,6 +88,21 @@ const SupportTable = () => {
             )}
           </tbody>
         </table>
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Pagination
+            current={currentPage}
+            pageSize={pageSize}
+            total={tickets.length}
+            onChange={(page) => setCurrentPage(page)}
+            showSizeChanger={false}
+          />
+        </div>
       </div>
     </div>
   );

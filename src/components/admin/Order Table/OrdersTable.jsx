@@ -5,12 +5,15 @@ import { db } from "../../../firebase";
 import { useUser } from "@clerk/clerk-react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Pagination } from "antd";
 
 const OrdersTable = () => {
   const [orders, setOrders] = useState([]);
   const previousOrdersRef = useRef([]);
   const { user } = useUser();
   const role = user?.publicMetadata?.role;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(15);
 
   useEffect(() => {
     const ordersRef = collection(db, "orders");
@@ -41,6 +44,11 @@ const OrdersTable = () => {
 
     return () => unsubscribe();
   }, [role]);
+  // Below all useEffect logic
+  const paginatedOrders = orders.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
     <div className="orders-table-wrapper">
@@ -63,7 +71,7 @@ const OrdersTable = () => {
               </td>
             </tr>
           ) : (
-            orders.map((order, index) => (
+            paginatedOrders.map((order, index) => (
               <tr key={index}>
                 <td>{order.id}</td>
                 <td>{order.name}</td>
@@ -75,6 +83,17 @@ const OrdersTable = () => {
           )}
         </tbody>
       </table>
+      <div
+        style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
+      >
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={orders.length}
+          onChange={(page) => setCurrentPage(page)}
+          showSizeChanger={false}
+        />
+      </div>
     </div>
   );
 };

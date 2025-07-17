@@ -5,11 +5,14 @@ import { useUser } from "@clerk/clerk-react";
 import AuthRequiredModal from "../Auth Required Modal/AuthRequiredModal";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Modal } from "antd";
+import { Result } from "antd";
 
 const ServicesSection = () => {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
 
   const { user } = useUser();
 
@@ -39,7 +42,7 @@ const ServicesSection = () => {
   return (
     <section className="services">
       {services.length === 0 ? (
-        <p>Loading services...</p>
+        <p style={{ textAlign: "center" }}>Loading services...</p>
       ) : (
         services.map((item, idx) => (
           <div className="service-card" key={item.id || idx}>
@@ -80,7 +83,20 @@ const ServicesSection = () => {
         isOpen={!!selectedService}
         onClose={() => setSelectedService(null)}
         service={selectedService}
+        showConfirmation={() => setConfirmationOpen(true)}
       />
+      <Modal
+        open={confirmationOpen}
+        footer={null}
+        centered
+        onCancel={() => setConfirmationOpen(false)}
+      >
+        <Result
+          status="success"
+          title="Your service has been successfully booked!"
+          subTitle="We’ll reach out to you shortly at your provided contact."
+        />
+      </Modal>
     </section>
   );
 };
