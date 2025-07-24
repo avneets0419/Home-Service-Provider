@@ -6,18 +6,26 @@ import { useUser } from "@clerk/clerk-react";
 import AuthRequiredModal from "../Auth Required Modal/AuthRequiredModal";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 const CheckoutModal = ({ isOpen, onClose, service, showConfirmation }) => {
   const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
-
   const name = user?.fullName || "";
   const email = user?.primaryEmailAddress?.emailAddress || "";
 
   // Refs to access input values
   const phoneRef = useRef();
   const addressRef = useRef();
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
+
+  const handleDateTimeChange = (value) => {
+    setSelectedDateTime(value);
+  };
 
   if (!isOpen || !service) return null;
 
@@ -43,6 +51,10 @@ const CheckoutModal = ({ isOpen, onClose, service, showConfirmation }) => {
         address: addressRef.current.value,
         service: service.title,
         price: service.price,
+        time: selectedDateTime
+          ? selectedDateTime.format("MMM D, YYYY h A")
+          : "",
+
         timestamp: new Date().toISOString(),
       };
 
@@ -123,6 +135,29 @@ const CheckoutModal = ({ isOpen, onClose, service, showConfirmation }) => {
               required
             />
           </label>
+          <label>Select Date & Time</label>
+          <DatePicker
+            showTime={{
+              format: "h A",
+              use12Hours: true,
+              disabledHours: () => {
+                const hours = [];
+                for (let i = 0; i <= 8; i++) hours.push(i); // Disable 12 AM – 8 AM
+                for (let i = 19; i < 24; i++) hours.push(i); // Disable 7 PM – 11 PM
+                return hours;
+              },
+            }}
+            use12Hours
+            format="MMM D, YYYY h A"
+            value={selectedDateTime}
+            onChange={handleDateTimeChange}
+            disabledDate={(current) =>
+              current && current < dayjs().startOf("day")
+            }
+            style={{ width: "100%" }}
+            required
+          />
+
           <button type="submit" className="checkout-btn">
             {loading ? <div className="spinner"></div> : "Book Service"}
           </button>

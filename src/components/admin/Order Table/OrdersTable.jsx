@@ -30,10 +30,13 @@ const OrdersTable = () => {
         const prevIds = new Set(previousOrdersRef.current.map((o) => o.id));
         const newlyAdded = newOrders.find((o) => !prevIds.has(o.id));
         if (newlyAdded) {
-          toast.success(`🛎️ New order from ${newlyAdded.name}`, {
-            position: "top-right",
-            autoClose: 6000,
-          });
+          toast.success(
+            `🛎️ New order from ${newlyAdded.name} of ${newlyAdded.service}`,
+            {
+              position: "top-right",
+              autoClose: 6000,
+            }
+          );
         }
       }
 
@@ -61,6 +64,8 @@ const OrdersTable = () => {
             <th>Service</th>
             <th>Amount</th>
             <th>Address</th>
+            <th>Phone</th>
+            <th>Date & Time</th>
           </tr>
         </thead>
         <tbody>
@@ -78,6 +83,8 @@ const OrdersTable = () => {
                 <td>{order.service}</td>
                 <td>{order.price || "—"}</td>
                 <td>{order.address}</td>
+                <td>{order.phone}</td>
+                <td>{order.time}</td>
               </tr>
             ))
           )}

@@ -4,6 +4,7 @@ import ServicesSection from "../components/Services Section/ServicesSection";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Faq from "../components/FAQ/Faq";
+import ChatBot from "../components/Chatbot/Chatbot";
 
 function Services() {
   return (
@@ -19,6 +20,7 @@ function Services() {
         <ServicesSection />
         <Faq />
       </div>
+      <ChatBot />
       <Footer />
     </>
   );
