@@ -3,8 +3,9 @@ import FeatureCarousel from "../components/Feature Carousel/FeatureCarousel";
 import ServicesSection from "../components/Services Section/ServicesSection";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
-import Faq from "../components/FAQ/Faq";
+
 import ChatBot from "../components/Chatbot/Chatbot";
+import Faq from "../components/FAQ/Faq";
 
 function Services() {
   return (
