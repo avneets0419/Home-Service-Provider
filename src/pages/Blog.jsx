@@ -1,6 +1,7 @@
 import React from "react";
 import BlogSection from "../components/Blog Section/BlogSection";
 import Navbar from "../components/Navbar/Navbar";
+
 import Footer from "../components/Footer/Footer";
 import ChatBot from "../components/Chatbot/Chatbot";
 
