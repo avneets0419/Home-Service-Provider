@@ -3,7 +3,7 @@ import BlogSection from "../components/Blog Section/BlogSection";
 import Navbar from "../components/Navbar/Navbar";
 
 import Footer from "../components/Footer/Footer";
-import ChatBot from "../components/Chatbot/Chatbot";
+import ChatBot from "../components/Chatbot/ChatBot";
 
 function Blog() {
   return (
@@ -18,9 +18,8 @@ function Blog() {
         </div>
         <BlogSection />
       </div>
-
-      <Footer />
       <ChatBot />
+      <Footer />
     </>
   );
 }
