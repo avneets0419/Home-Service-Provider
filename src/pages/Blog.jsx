@@ -18,8 +18,9 @@ function Blog() {
         </div>
         <BlogSection />
       </div>
-      <ChatBot />
+
       <Footer />
+      <ChatBot />
     </>
   );
 }
