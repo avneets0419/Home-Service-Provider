@@ -54,11 +54,6 @@ const Navbar = () => {
               Services
             </Link>
           </li>
-          <li className="list">
-            <Link to="/services" className="navbarl">
-              Contact Us
-            </Link>
-          </li>
         </div>
         <div className="navbarr">
           <div className="search-box">
